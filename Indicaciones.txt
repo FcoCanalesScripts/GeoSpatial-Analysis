@@ -1,0 +1,39 @@
+VOL_CODE'CALCULO DEL VOLUMEN DE EDIFICIOS VOLCÃ?NICOS' 
+
+%%Indicaciones
+
+	Para ejecutar el script desde MATLAB se deben seguir los siguientes pasos:
+1) En la carpeta de Domos_CVP se debe incluir un archivo de texto que contenga un set de coordenadas UTM con elevación
+que definan el contorno del domo o edificio volcánico a calucular:
+   Ejemplo: (Sin títulos, el orden debe ser EsteUTMX {Longitud}, NorteUTMY {Latitud}, Elevación)
+
+738213.255,5487243.310,1211
+738279.966,5487222.783,1222
+738351.808,5487179.165,1229
+738410.821,5487127.849,1231
+738469.834,5487056.007,1241
+738539.111,5486996.994,1255
+
+   El archivo debe ser llamado 'DomosCVP1'. Se pueden incluir más contornos que deberán ser llamados 'DomosCVP2', 'DomosCVP3',..., etc.
+
+2) En la carpeta Imagen_Tiff se deberá incluir la imagen DEM en formato .tiff
+
+3) Al abrir Matlab se debe agregar la carpeta 'Vol_Code' al path con todos sus archivos
+
+4) Al abrir el script 'Volume_Code' se deberán completar los datos de lectura:
+
+% LECTURA DEL ARCHIVO DEM - EN FORMATO TIFF.
+[A,R]= geotiffread('LosLagosDEM.tiff');             <- Nombre del archivo DEM
+%valores que limitan al DEM en x,y                  <- Buscar esa información en los datos de la imagen
+R.XLimWorld(1,1)= 695606.4375;        
+R.YLimWorld(1,2)= 5503703.75;
+% NUMERO DE EDIFICIOS A CALCULAR                    <- En este caso son 2 domos, cambiar todos los 2 por la cantidad trabajada
+Vol=zeros(2,1);
+Area=zeros(2,1);
+for i=1:2
+
+
+5) Una vez cambiados los datos, se ejecuta el script en 'Run' y comienza a correr el código
+
+    El tiempo de ejecución es proporcional a la resolución de la imagen DEM. Generalmente, el software da aviso de algunos puntos repetidos
+que han sido corregidos. Finalmente, el código revela el modelo en 3D del edificio y los cálculos de área y volumen.
